@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeatureDelete.cs" />
+    <Compile Include="FeatureDeleteHashSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +51,8 @@
     <None Include="Readme-Q2.MD" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Release\Features.txt" />
+    <Content Include="bin\Release\FeaturesToDelete.txt" />
     <Content Include="Features.txt" />
     <Content Include="FeaturesToDelete.txt" />
   </ItemGroup>

@@ -2,10 +2,11 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace _7SigmaTest
 {
-    public class FeatureDelete
+    public class FeatureDeleteArray
     {
         private
 
@@ -16,8 +17,8 @@ namespace _7SigmaTest
             string Output = @"Output.txt";
 
             // TODO: get the number of lines in the "FeaturesToDelete.txt" and use that to initialise the array
-            string[] FeaturesToDelete = new string[10000];
-
+            //int[] FTD = new int[10000];
+            HashSet<string> FeaturesToDelete = new HashSet<string>();
             try
             {
                 if (File.Exists(FeaturesToDeletePath))
@@ -26,11 +27,9 @@ namespace _7SigmaTest
 
                     using (StreamReader sr = new StreamReader(FeaturesToDeletePath))
                     {
-                        var i = 0;
                         while (sr.Peek() >= 0)
                         {
-                            FeaturesToDelete[i] = sr.ReadLine();
-                            i++;
+                            FeaturesToDelete.Add(sr.ReadLine());
                         }
                     }
                 }
@@ -62,13 +61,13 @@ namespace _7SigmaTest
                             var s = from ftd in FeaturesToDelete where (ftd == UDB) select ftd;
 
                             // If s is empty the record dosen't need deleting so can be written to the update file
-                            if (String.IsNullOrEmpty(s.FirstOrDefault()))
+                            if (s.FirstOrDefault() == null || s.FirstOrDefault() == "")
                             {
                                 OutputStream.WriteLine(FeaturesLine);
                             }
                             else
                             {
-                                Console.WriteLine("Deleted UDB: " + s.FirstOrDefault());
+                                //Console.WriteLine("Deleted UDB: " + s.FirstOrDefault().ToString());
                             }
                         }
                     }
